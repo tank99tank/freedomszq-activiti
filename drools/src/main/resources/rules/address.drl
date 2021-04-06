@@ -1,0 +1,25 @@
+/*区域/战区 省市区的规则*/
+package rules
+
+import com.mashibing.drools.entity.Address;
+import com.mashibing.drools.entity.AddressCheckResult;
+
+rule "Postcode should be filled with exactly 5 numbers"
+
+    when
+        address : Address(postcode != null, postcode matches "([0-9]{5})")
+        checkResult : AddressCheckResult();
+    then
+        checkResult.setPostCodeResult(true);
+		System.out.println("规则中打印日志：校验通过1!");
+end
+
+rule "TEST"
+
+    when
+        address : Address(street != null, street=="测试")
+        checkResult : AddressCheckResult();
+    then
+        checkResult.setPostCodeResult(true);
+		System.out.println("规则中打印日志：校验通过2!");
+end
